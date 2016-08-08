@@ -630,6 +630,9 @@ WARNING
 
           # Keep gem cache out of the slug
           FileUtils.rm_rf("#{slug_vendor_base}/cache")
+          
+          puts "Setting BUNDLE_FROZEN to false."
+          File.open("#{Dir.pwd}/.bundle/config", "a") { |f| f.write("BUNDLE_FROZEN: '0'\n") }
         else
           log "bundle", :status => "failure"
           error_message = "Failed to install gems via Bundler."
